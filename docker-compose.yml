@@ -1,0 +1,19 @@
+services:
+  aggregator:
+    build: ./aggregator
+    ports:
+      - "9000:9000"
+
+  client1:
+    build: ./client
+    environment:
+      - CLIENT_NAME=client1
+    depends_on:
+      - aggregator
+
+  client2:
+    build: ./client
+    environment:
+      - CLIENT_NAME=client2
+    depends_on:
+      - aggregator
